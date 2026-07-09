@@ -1,0 +1,98 @@
+[
+  {
+    "name": "深圳市科技创新局-通知公告",
+    "base_url": "https://stic.sz.gov.cn",
+    "list_url": "https://stic.sz.gov.cn/xxgk/tzgg/",
+    "region": "深圳",
+    "source_type": "policy",
+    "include_keywords": [
+      "人工智能",
+      "软件",
+      "数字化",
+      "高新技术",
+      "中小企业",
+      "项目申报",
+      "征集",
+      "资助",
+      "补贴",
+      "产业用房",
+      "创新"
+    ]
+  },
+  {
+    "name": "深圳市工业和信息化局-通知公告",
+    "base_url": "https://gxj.sz.gov.cn",
+    "list_url": "https://gxj.sz.gov.cn/xxgk/xxgkml/qt/tzgg/",
+    "region": "深圳",
+    "source_type": "policy",
+    "include_keywords": [
+      "人工智能",
+      "软件",
+      "数字化",
+      "工业互联网",
+      "技术改造",
+      "设备更新",
+      "中小企业",
+      "专精特新",
+      "首台",
+      "申报",
+      "补贴"
+    ]
+  },
+  {
+    "name": "广东省科学技术厅-通知公告",
+    "base_url": "https://gdstc.gd.gov.cn",
+    "list_url": "https://gdstc.gd.gov.cn/zwgk_n/tzgg/",
+    "region": "广东",
+    "source_type": "policy",
+    "include_keywords": [
+      "人工智能",
+      "科技型中小企业",
+      "高新技术",
+      "项目申报",
+      "征集",
+      "资助",
+      "补贴",
+      "创新"
+    ]
+  },
+  {
+    "name": "广东省工业和信息化厅-通知公告",
+    "base_url": "https://gdii.gd.gov.cn",
+    "list_url": "https://gdii.gd.gov.cn/zwgk/tzgg1011/",
+    "region": "广东",
+    "source_type": "policy",
+    "include_keywords": [
+      "人工智能",
+      "软件",
+      "数字化",
+      "工业互联网",
+      "制造业",
+      "专精特新",
+      "中小企业",
+      "技术改造",
+      "设备更新",
+      "申报",
+      "补贴"
+    ]
+  },
+  {
+    "name": "中国政府采购网-广东深圳关键词",
+    "base_url": "https://www.ccgp.gov.cn",
+    "list_url": "https://www.ccgp.gov.cn/cggg/dfgg/",
+    "region": "全国",
+    "source_type": "tender",
+    "include_keywords": [
+      "广东",
+      "深圳",
+      "人工智能",
+      "软件",
+      "信息化",
+      "数字化",
+      "系统开发",
+      "平台建设",
+      "政府采购",
+      "采购意向"
+    ]
+  }
+]
