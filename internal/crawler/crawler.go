@@ -3,6 +3,7 @@ package crawler
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -41,11 +42,17 @@ func LoadSources(path string) ([]model.SourceConfig, error) {
 
 func (c *Crawler) Crawl(ctx context.Context, sources []model.SourceConfig) ([]model.Document, error) {
 	var docs []model.Document
+	var sourceErrors []error
+	successfulLists := 0
 	for _, source := range sources {
 		items, err := c.list(ctx, source)
 		if err != nil {
-			return docs, fmt.Errorf("%s list: %w", source.Name, err)
+			sourceErr := fmt.Errorf("%s list: %w", source.Name, err)
+			sourceErrors = append(sourceErrors, sourceErr)
+			fmt.Fprintf(os.Stderr, "warning: skipping source: %v\n", sourceErr)
+			continue
 		}
+		successfulLists++
 		for i, item := range items {
 			if c.cfg.MaxItemsPerSource > 0 && i >= c.cfg.MaxItemsPerSource {
 				break
@@ -56,6 +63,9 @@ func (c *Crawler) Crawl(ctx context.Context, sources []model.SourceConfig) ([]mo
 			}
 			docs = append(docs, doc)
 		}
+	}
+	if successfulLists == 0 && len(sourceErrors) > 0 {
+		return docs, fmt.Errorf("all source lists failed: %w", errors.Join(sourceErrors...))
 	}
 	return docs, nil
 }
@@ -111,9 +121,10 @@ func (c *Crawler) fetch(ctx context.Context, target string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	req.Header.Set("User-Agent", "bay-area-opportunity-daily/0.1 (+https://afdian.com/a/gdpolicy)")
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
 	req.Header.Set("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
 	req.Header.Set("Accept-Language", "zh-CN,zh;q=0.9,en;q=0.6")
+	req.Header.Set("Cache-Control", "no-cache")
 
 	resp, err := c.client.Do(req)
 	if err != nil {
